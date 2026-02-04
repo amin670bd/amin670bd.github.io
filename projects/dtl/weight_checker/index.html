@@ -1,0 +1,94 @@
+# Aluminum Production Weight Checking System V1.3
+
+This README includes a description, usage guide, and a visual example of how the software works.
+
+---
+
+
+
+**Client:** Dhaka Thai AlcoMaxx PLC  
+**Developer:** [amin670bg.github.io](https://amin670bg.github.io)
+
+An automated weight verification tool designed for aluminum production lines. This system compares real-time (or manual) bundle weights against a master CSV database to determine if a product meets quality standards based on permissible tolerance (± ADJ).
+
+## 🚀 Features
+- **Real-time Scale Integration:** Automatically reads weight data from `X:\wbdata1.wbg`.
+- **Intelligent Search:** Search by Die Number and Length simultaneously.
+- **Dynamic Status Calculation:**
+  - `PASS [OK]`: Weight is exactly within range.
+  - `PASS [UNDR/OVER]`: Weight is slightly off but within the allowed Adjustment (ADJ).
+  - `REJECT`: Weight is outside the safety tolerance.
+- **Visual Feedback:** Color-coded results (Yellow for OK, White for Marginal, Red for Reject).
+
+---
+
+## 🛠 Installation & Setup
+
+1. **Database Setup:** 
+   Place your `WEIGHT_CHART_MASTER.csv` in the same folder as the application. Use the following column format:
+   `SN, CATEGORY, DIE_NAME, _, WIDE, LENGTH, MN-THK, MX-THK, AVG-W, MIN-W, MAX-W`
+
+2. **Hardware Connection:**
+   If using an electronic scale, ensure it is configured to write its output to `X:\wbdata1.wbg`. If the file is missing, the system will default to **Manual Entry Mode**.
+
+---
+
+## 📖 User Guide
+
+1. **Launch the Application:** Open the `.exe` file.
+2. **Enter Die No:** Type the Die Name or Number (e.g., `DT-101`).
+3. **Enter Length:** Provide the length in feet (e.g., `12.0`).
+4. **Bundle Info:** Enter the number of pieces in the bundle.
+5. **Tolerance (ADJ):** Set your adjustment limit (Default is `0.050kg`).
+6. **Weight Entry:** 
+   - If the scale is connected, it reads automatically.
+   - If not, type the weight manually from the scale display.
+7. **Review Results:** The table will highlight the status of the bundle.
+8. **System Info:** Press **'i'** at the end of a check to view developer and client details.
+
+---
+
+## 🖥 Sample Output Example
+
+```text
+============================================================================================
+                      ALUMINUM PRODUCTION WEIGHT CHECKING SYSTEM V1.3
+============================================================================================
+
+ ENTER DIE NO (Search): DT-204
+ ENTER LENGTH (ft):     15.0
+ ENTER PCS IN BUNDLE:   10
+ ± ADJ (0=±0.050kg):    0.050
+ ENTER MANUAL WEIGHT:   45.500
+
+================= BUNDLE INFO =================
+BNDL WGT     : 45.500 kg
+PCS in BNDL  : 10 pcs
+SRCH LENGTH  : 15.0 ft
+PCS WGT      : 4.550 kg/pc
+ADJ WGT      : ±0.050 kg
+               4.500 kg <> 4.600 kg]
+===============================================
+-----+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
+ SN  | CATEGORY  | DIE NAME                 | WIDE| LEN | MN-THK | MX-THK | AVG-W  | MIN-W  | MAX-W  | STATUS        | DIFF   
+-----+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
+ 42  | WINDOW    | DT-204                   | 1.5 | 15.0| 1.10   | 1.20   | 4.560  | 4.510  | 4.610  | >PASS [UNDR]< | -0.010
+-----+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
+
+============================================================================================
+
+ Press 'i' for Info or any other key for next check...
+```
+
+---
+
+## 📞 Support
+For system updates or technical issues, please visit: [amin670bd.github.io](https://amin670bd.github.io)
+
+---
+
+### How to use this README:
+1. Go to your GitHub repository.
+2. Click **Add file** > **Create new file**.
+3. Name it `README.md`.
+4. Paste the content above and click **Commit changes**.
