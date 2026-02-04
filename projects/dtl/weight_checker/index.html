@@ -1,94 +1,245 @@
-# Aluminum Production Weight Checking System V1.3
 
-This README includes a description, usage guide, and a visual example of how the software works.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Weight System | amin670bd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --nav-bg: rgba(11, 14, 20, 0.8);
+            --card-bg: #151921;
+            --accent-blue: #3b82f6;
+            --accent-green: #4af626;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: #2d3748;
+        }
 
----
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: 80px; /* Space for fixed nav */
+            line-height: 1.6;
+        }
 
+        /* --- NAVIGATION (Matching your site) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
 
+        .nav-container {
+            width: 90%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-**Client:** Dhaka Thai AlcoMaxx PLC  
-**Developer:** [amin670bg.github.io](https://amin670bg.github.io)
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: white;
+        }
 
-An automated weight verification tool designed for aluminum production lines. This system compares real-time (or manual) bundle weights against a master CSV database to determine if a product meets quality standards based on permissible tolerance (± ADJ).
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-## 🚀 Features
-- **Real-time Scale Integration:** Automatically reads weight data from `X:\wbdata1.wbg`.
-- **Intelligent Search:** Search by Die Number and Length simultaneously.
-- **Dynamic Status Calculation:**
-  - `PASS [OK]`: Weight is exactly within range.
-  - `PASS [UNDR/OVER]`: Weight is slightly off but within the allowed Adjustment (ADJ).
-  - `REJECT`: Weight is outside the safety tolerance.
-- **Visual Feedback:** Color-coded results (Yellow for OK, White for Marginal, Red for Reject).
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
----
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
 
-## 🛠 Installation & Setup
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-1. **Database Setup:** 
-   Place your `WEIGHT_CHART_MASTER.csv` in the same folder as the application. Use the following column format:
-   `SN, CATEGORY, DIE_NAME, _, WIDE, LENGTH, MN-THK, MX-THK, AVG-W, MIN-W, MAX-W`
+        .project-header {
+            margin-bottom: 40px;
+        }
 
-2. **Hardware Connection:**
-   If using an electronic scale, ensure it is configured to write its output to `X:\wbdata1.wbg`. If the file is missing, the system will default to **Manual Entry Mode**.
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
 
----
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1.5px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-## 📖 User Guide
+        .hero-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
 
-1. **Launch the Application:** Open the `.exe` file.
-2. **Enter Die No:** Type the Die Name or Number (e.g., `DT-101`).
-3. **Enter Length:** Provide the length in feet (e.g., `12.0`).
-4. **Bundle Info:** Enter the number of pieces in the bundle.
-5. **Tolerance (ADJ):** Set your adjustment limit (Default is `0.050kg`).
-6. **Weight Entry:** 
-   - If the scale is connected, it reads automatically.
-   - If not, type the weight manually from the scale display.
-7. **Review Results:** The table will highlight the status of the bundle.
-8. **System Info:** Press **'i'** at the end of a check to view developer and client details.
+        /* --- SECTION STYLING --- */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
 
----
+        h2 {
+            font-size: 1.5rem;
+            color: white;
+            margin-top: 40px;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+        }
 
-## 🖥 Sample Output Example
+        p, li {
+            color: var(--text-dim);
+            font-size: 16px;
+        }
 
-```text
-============================================================================================
-                      ALUMINUM PRODUCTION WEIGHT CHECKING SYSTEM V1.3
-============================================================================================
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            height: fit-content;
+        }
 
- ENTER DIE NO (Search): DT-204
- ENTER LENGTH (ft):     15.0
- ENTER PCS IN BUNDLE:   10
- ± ADJ (0=±0.050kg):    0.050
- ENTER MANUAL WEIGHT:   45.500
+        /* --- TERMINAL OUTPUT --- */
+        .terminal {
+            background: #000;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            white-space: pre;
+            color: #d1d1d1;
+            border: 1px solid var(--border);
+            margin: 20px 0;
+        }
 
+        .status-pass { color: var(--accent-green); }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="https://amin670bd.github.io" class="logo">AMIN.</a>
+            <div class="nav-links">
+                <a href="https://amin670bd.github.io#about">About</a>
+                <a href="https://amin670bd.github.io#projects" style="color:white">Projects</a>
+                <a href="https://amin670bd.github.io#experience">Experience</a>
+                <a href="https://amin670bd.github.io#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="project-header">
+            <span class="badge">V1.3 PRODUCTION TOOL</span>
+            <h1>Aluminum Production Weight Checking System</h1>
+            <p>A precision-focused automation tool for Dhaka Thai AlcoMaxx PLC.</p>
+        </header>
+
+        <img src="https://github.com/user-attachments/assets/31d10a12-ee44-4e51-ad79-1462b6862467" alt="Software Interface" class="hero-img">
+
+        <div class="grid">
+            <div class="main-content">
+                <h2>Description</h2>
+                <p>Designed to eliminate manual entry errors in high-speed aluminum production lines. This system acts as a bridge between industrial weighing scales and quality master databases, providing instant visual confirmation for quality control teams.</p>
+                
+                <h2>ðŸš€ Key Features</h2>
+                <ul>
+                    <li><strong>Scale Automation:</strong> Direct integration with scale data files.</li>
+                    <li><strong>Smart Search:</strong> Simultaneous Die Number and Length matching.</li>
+                    <li><strong>Tolerance Logic:</strong> Dynamic calculation based on Â± ADJ parameters.</li>
+                    <li><strong>Color Coded Feedback:</strong> Real-time visual alerts for Pass/Reject status.</li>
+                </ul>
+
+                <h2>ðŸ–¥ Production Output Example</h2>
+<div class="terminal">
 ================= BUNDLE INFO =================
-BNDL WGT     : 45.500 kg
-PCS in BNDL  : 10 pcs
-SRCH LENGTH  : 15.0 ft
-PCS WGT      : 4.550 kg/pc
-ADJ WGT      : ±0.050 kg
-               4.500 kg <> 4.600 kg]
+BNDL WGT     : 52.400 kg
+PCS in BNDL  : 12 pcs
+SRCH LENGTH  : 12.0 ft
+PCS WGT      : 4.366 kg/pc
+STATUS       : <span class="status-pass">PASS [OK]</span>
 ===============================================
------+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
- SN  | CATEGORY  | DIE NAME                 | WIDE| LEN | MN-THK | MX-THK | AVG-W  | MIN-W  | MAX-W  | STATUS        | DIFF   
------+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
- 42  | WINDOW    | DT-204                   | 1.5 | 15.0| 1.10   | 1.20   | 4.560  | 4.510  | 4.610  | >PASS [UNDR]< | -0.010
------+-----------+--------------------------+-----+-----+--------+--------+--------+--------+--------+---------------+--------
+</div>
+            </div>
 
-============================================================================================
+            <aside class="sidebar">
+                <div class="card">
+                    <h3 style="margin-top:0; font-size:18px;">Project Info</h3>
+                    <p style="font-size:14px;"><strong>Client:</strong> Dhaka Thai AlcoMaxx PLC</p>
+                    <p style="font-size:14px;"><strong>Stack:</strong> Python / CSV Database</p>
+                    <p style="font-size:14px;"><strong>Deployment:</strong> Desktop (.exe)</p>
+                    <hr style="border:0; border-top:1px solid var(--border); margin:20px 0;">
+                    <a href="https://amin670bd.github.io" style="color: var(--accent-blue); text-decoration: none; font-weight: 500; font-size: 14px;">â† Back to Portfolio</a>
+                </div>
+            </aside>
+        </div>
 
- Press 'i' for Info or any other key for next check...
-```
+        <footer>
+            &copy; 2026 amin670bd. Developed for Dhaka Thai AlcoMaxx PLC.
+        </footer>
+    </div>
 
----
-
-## 📞 Support
-For system updates or technical issues, please visit: [amin670bd.github.io](https://amin670bd.github.io)
-
----
-
-### How to use this README:
-1. Go to your GitHub repository.
-2. Click **Add file** > **Create new file**.
-3. Name it `README.md`.
-4. Paste the content above and click **Commit changes**.
+</body>
+</html>
