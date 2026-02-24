@@ -280,21 +280,40 @@
                 <!-- Terminal Log Section -->
                 <div class="glass-card" id="terminal">
                     <h2 class="section-header">Live Terminal Case Log</h2>
-                    <div class="terminal-header"><span>CONSOLE V3.0</span><span>STABLE — CONNECTED</span></div>
+                    <div class="terminal-header"><span>WEIGHT_CHECKER_V3.0</span> </div>
                     <div class="terminal-body">
- 📦 ALUMINUM BUNDLE PRODUCTION PRECISION CHECKER V3.0 📦
- DIE NAME: 2122 | SEARCH LENGTH: 21.0 FT | PIECES: 4 | BUNDLE WT: 10.985 KG
+================================================================================================================================================
+                                               📦 ALUMINUM BUNDLE PRODUCTION PRECISION CHECKER V3.0 📦
+================================================================================================================================================
 
-------+-----------+-------------------------------+-------+---------+---------+-------------
- SN   | CATEGORY  | DIE NAME                      | LEN   | WT-AVG  | WT-DIF  | STATUS      
-------+-----------+-------------------------------+-------+---------+---------+-------------
- 1228 | Maxx Pro  | MXP-2122                      |  18.5 |   2.815 |  -0.011 | GRAY ZONE 🔽 
- 982  | Maxx      | MX-2122                       |  21.0 |   2.657 |   0.000 | PASSED    🆗 
- 107  | Alco Plus | AP-2122                       |  18.5 |   2.929 |  -0.096 | REJECTED  ⏬ 
- 983  | Maxx      | MX-2122                       |  18.5 |   2.341 |  +0.315 | REJECTED  ⏫ 
- 1227 | Maxx Pro  | MXP-2122                      |  21.0 |   3.196 |  -0.384 | REJECTED  ⏬ 
- 612  | Alco      | EC-2122S                      |  21.0 |   1.228 |  +1.454 | REJECTED  ⏫ 
-------+-----------+-------------------------------+-------+---------+---------+-------------
+                               ----------- ✏️ ENTER INFO ✏️ -----------
+
+ DIE NAME/NUMBER     : 2122
+ SEARCH LENGTH (FT)  : 21
+ PIECES IN BUNDLE    : 4
+ 1 PIECE ±ADJUST     :
+
+                       ----------- 📦 BUNDLE INFORMATION 📦 -----------
+
+ BUNDLE WEIGHT    : 10.500 KG           SEARCH LENGTH : 21.0 FT
+ PIECES IN BUNDLE : 4 PCS               1PC WEIGHT    : 2.625 KG/PC
+ ADJUST WEIGHT    : ±0.000 KG           ADJUST RANGE  : 2.625 <> 2.625 KG
+
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+ SN   | CATEGORY  | DIE NAME                      | LEN   | WT-AVG  | WT-MIN  | WT-MAX  | WT-DIF  |       STATUS      |    WT QC RESULT        |
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+ 982  | Maxx      | MX-2122                       |  21.0 |   2.657 |   2.555 |   2.759 |   0.000 | ✔️ PASSED    🆗   | WITHIN MIN MAX WEIGHT  |
+ 1227 | Maxx Pro  | MXP-2122                      |  21.0 |   3.196 |   3.130 |   3.262 |  -0.505 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 611  | Alco      | EC-2122                       |  21.0 |   2.044 |   1.937 |   2.152 |  +0.473 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 106  | Alco Plus | AP-2122                       |  21.0 |   3.325 |   3.227 |   3.423 |  -0.602 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 1357 | Premier   | PR-2122                       |  21.0 |   1.861 |   1.795 |   1.927 |  +0.698 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 984  | Maxx      | MX-2122S                      |  21.0 |   1.532 |   1.471 |   1.593 |  +1.032 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 697  | EDP       | EDP-2122-1.2 MM               |  21.0 |   3.921 |   3.788 |   4.053 |  -1.163 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 612  | Alco      | EC-2122S                      |  21.0 |   1.228 |   1.163 |   1.293 |  +1.332 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 1143 | Maxx      | MX-SGTA-2122                  |  21.0 |   4.138 |   3.998 |   4.278 |  -1.373 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 21   | 1.5mm Pro | 1.5-2122                      |  21.0 |   4.162 |   4.061 |   4.264 |  -1.436 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+                                                 [ANY KEY] NEXT | [I] INFO | [R] RELOAD
                     </div>
                 </div>
             </div>
