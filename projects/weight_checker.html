@@ -3,135 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details | Aluminum Bundle Weight Checker V3.0</title>
+    <title>Project Details | Weight Verify App V3.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-blue: #38bdf8;
-            --accent-green: #4ade80;
-            --accent-yellow: #fbbf24;
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --accent-blue: #0284c7;
+            --accent-green: #10b981;
             --accent-red: #ef4444;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
+            --accent-yellow: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
+            padding: 20px;
         }
 
+        /* Nav & Header */
         header {
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
+            padding: 60px 0 40px;
+            text-align: left;
         }
 
         .back-link {
             color: var(--accent-blue);
             text-decoration: none;
+            font-weight: 500;
             font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 20px;
-            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
         }
 
-        .back-link:hover { opacity: 0.7; }
+        .top-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            border: 1px solid #bbf7d0;
+        }
 
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        /* KPI Metrics */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
+        .tag {
+            background: var(--secondary-bg);
             border: 1px solid var(--border-color);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover { transform: translateY(-5px); }
-
-        .stat-value {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent-green);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Layout Columns */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 2.5fr 1fr;
-            gap: 40px;
-        }
-
-        @media (max-width: 1000px) {
-            .main-grid { grid-template-columns: 1fr; }
-        }
-
-        section { margin-bottom: 50px; }
-
-        h2 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
+        /* Image Placeholder */
+        .image-container {
+            width: 100%;
+            height: 450px;
+            background: #f1f5f9;
+            border-radius: 16px;
+            border: 2px dashed var(--border-color);
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: var(--accent-blue);
+            justify-content: center;
+            margin: 40px 0;
+            color: var(--text-muted);
+            overflow: hidden;
         }
 
-        .content-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .metric-card {
+            background: var(--primary-bg);
+            padding: 24px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            box-shadow: var(--shadow);
         }
 
-        /* QC Table Styling */
-        .table-wrapper { overflow-x: auto; }
+        .metric-card i {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Content Sections */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            gap: 12px;
+        }
+
+        .feature-list li:last-child { border: none; }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Quality Table */
+        .table-wrapper {
+            overflow-x: auto;
+        }
 
         table {
             width: 100%;
@@ -141,87 +203,30 @@
 
         th {
             text-align: left;
-            padding: 15px;
+            padding: 12px;
+            background: #f8fafc;
             color: var(--text-muted);
+            font-weight: 600;
             border-bottom: 2px solid var(--border-color);
-            text-transform: uppercase;
-            font-size: 0.75rem;
         }
 
         td {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
             font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        .b-pass { background: rgba(74, 222, 128, 0.15); color: var(--accent-green); }
-        .b-warn { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); }
-        .b-reject { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+        .status-ok { background: #dcfce7; color: #166534; }
+        .status-warn { background: #fef3c7; color: #92400e; }
+        .status-fail { background: #fee2e2; color: #991b1b; }
 
-        /* Tech Tags */
-        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-
-        .tag {
-            background: var(--bg-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid var(--border-color);
-            color: var(--accent-blue);
-        }
-
-        /* Terminal Display */
-        .terminal {
-            background: #000;
-            color: #10b981;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            padding: 25px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .terminal::before {
-            content: "SYSTEM LOG: ACTIVE";
-            position: absolute;
-            top: 5px;
-            right: 15px;
-            font-size: 0.65rem;
-            color: #334155;
-        }
-
-        /* Side Sections */
-        .side-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .feature-list { list-style: none; }
-
-        .feature-list li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .feature-list li::before {
-            content: "\f058";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-        }
+ 
 
         footer {
             margin-top: 80px;
@@ -229,207 +234,266 @@
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
+	
+	<!-- Include this in your <head> section -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+    .terminal {
+        background: #110011; /* Industrial dark blue */
+        color: #ddffdd;    /* Matrix/Emerald green for text */
+        padding: 30px;
+        border-radius: 12px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 14px;     /* Adjusted for best ASCII table fit */
+        line-height: 1.35;
+        border: 1px solid #334155;
+        overflow-x: auto;    /* Crucial for mobile viewing of wide tables */
+        white-space: pre;    /* Preserves the ASCII structure */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Optional: Custom scrollbar styling for the terminal */
+    .terminal::-webkit-scrollbar {
+        height: 8px;
+    }
+    .terminal::-webkit-scrollbar-track {
+        background: #0f172a;
+    }
+    .terminal::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+    }
+</style>
+	
+	
 </head>
 <body>
 
     <div class="container">
         <header>
-            <a href="https://amin670bg.github.io" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
-            <h1>Aluminum Bundle Weight Checker V3.0</h1>
-            <p class="subtitle">Precision QC Automation & LightHouse ERP Integration Suite</p>
+            <a href="https://amin670bg.github.io" class="back-link"><i class="fas fa-chevron-left"></i> Back to Portfolio</a>
+            <span class="top-badge">🏆 Top Achievement</span>
+            <h1>Yaohua XK3190-D# Weight Monitor & Verify App</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Industrial Scale-to-ERP Automation for Dhaka Thai AlcoMaxx PLC</p>
+            
+            <div class="tech-tags">
+                <span class="tag">C#.NET</span>
+                <span class="tag">Serial Port Integration</span>
+                <span class="tag">RS232 Protocol</span>
+                <span class="tag">ERP Automation Tools</span>
+                <span class="tag">Windows 10/11</span>
+            </div>
         </header>
 
-        <!-- Dynamic Impact Metrics -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-value">60%</span>
-                <span class="stat-label">Faster Packing Process</span>
+        <!-- Product Image Placeholder -->
+        <div class="image-container">
+            <!-- Replace the src with your actual project screenshot link -->
+            <div class="achievement-highlight mb-5  rounded-full">
+                <div class="row ">
+                    <p class="bg-primary fs-6 text-gray-800 w-25 text-center px-4 mt-2 rounded-pill">🏆 Top Achievement</p><h3 class="fw-800 mb-4">
+    Yaohua XK3190-D# Weight Scale Monitor &amp; Weight Verify App for Windows 10/11
+  </h3>
+                    <div class="col-9 text-center items-center">
+                        <div class="rounded">
+                        
+    
+                        
+                    <img src="./weight_verify.png" width="100%" class="rounded border" style="filter: invert(0);"></div>
+                    </div>
+                <div class="col-3 p-0 m-0 text-center">
+                        <img src="./ws2.png" width="95%" class="rounded border m-1" style="filter: invert(0);"><img src="./ws1.png" width="95%" class="rounded border m-1" style="filter: invert(0);">
+                    </div></div>
+            <div class="row ">
+                    <div class="col">
+                        
+                        <div class="">
+  <div class="flex items-center ">
+    
+    
+  </div>
+  
+  
+
+  <div class="max-w-2xl mx-auto shadow-md rounded-lg p-6 space-y-4">
+  <!-- Pill Badge -->
+  
+
+  <!-- Title -->
+  
+
+  <!-- Company & Tech -->
+  <p class="text-gray-600 fs-5 my-3">
+    <span class="font-semibold">Technologies:</span> C#.NET,Serial Port Integration, ERP Automation Tools<br>
+    <span class="font-semibold">Company:</span> DhakaThai AlcoMaxx PLC
+  </p>
+
+  <!-- Achievements List -->
+  <ul class="list-disc list-inside text-gray-700 space-y-2">
+    <li>Designed and developed a custom desktop application to integrate physical weight meters/scales with LightHouse ERP at the Packing Section.</li>
+    <li>Implemented Serial Port communication for real-time weight capture, ensuring seamless data transfer from hardware to ERP.</li>
+    <li>Automated the bundle packing workflow, reducing packing time by <span class="font-bold text-blue-600">60%</span>.</li>
+    <li>Optimized label printing throughput, scaling daily output from <span class="font-bold text-green-600">2,500</span> to <span class="font-bold text-green-600">8,000+</span> labels.</li>
+    <li>Delivered a robust solution that improved operational efficiency, minimized manual errors, and supported high-volume production demands.</li>
+  </ul>
+</div>
+
+<a class="btn btn-primary px-4 mt-2 rounded-pill" href="https://amin670bd.github.io/projects/weight_checker.html">Project Details</a></div>
+                    </div>
+                    
+                </div></div>
+            <!-- If no image, it will show the placeholder styling -->
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <i class="fas fa-bolt"></i>
+                <span class="metric-value">60%</span>
+                <span class="metric-label">Reduction in Packing Time</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">8,000+</span>
-                <span class="stat-label">Daily Labels Handled</span>
+            <div class="metric-card">
+                <i class="fas fa-print"></i>
+                <span class="metric-value">8,000+</span>
+                <span class="metric-label">Daily Labels Output</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">RS232</span>
-                <span class="stat-label">Real-time Data Stream</span>
+            <div class="metric-card">
+                <i class="fas fa-microchip"></i>
+                <span class="metric-value">Real-time</span>
+                <span class="metric-label">RS232 Data Capture</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">0%</span>
-                <span class="stat-label">Manual Entry Errors</span>
+            <div class="metric-card">
+                <i class="fas fa-check-circle"></i>
+                <span class="metric-value">100%</span>
+                <span class="metric-label">Verification Accuracy</span>
             </div>
         </div>
 
-        <div class="main-grid">
-            <div class="main-column">
-                <!-- Overview -->
-                <section>
-                    <h2><i class="fas fa-info-circle"></i> Project Summary</h2>
-                    <div class="content-card">
-                        <p>An industrial-grade solution developed for <strong>Dhaka Thai AlcoMaxx PLC</strong> to solve critical bottlenecks in the heavy aluminum production line. The suite integrates physical <strong>Yaohua XK3190-D#</strong> indicators directly with <strong>LightHouse ERP</strong> via C#.NET serial communication bridges.</p>
-                        <div class="tags">
-                            <span class="tag">C#.NET</span>
-                            <span class="tag">RS232 Protocol</span>
-                            <span class="tag">ERP Automation</span>
-                            <span class="tag">Win10/11 Optimization</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 10-Tier QC Table -->
-                <section>
-                    <h2><i class="fas fa-microscope"></i> 10-Tier Quality Control Logic</h2>
-                    <div class="content-card table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Symbol</th>
-                                    <th>Status Code</th>
-                                    <th>Logic Context</th>
-                                    <th>Tier</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>✅</td>
-                                    <td>PASSED (Optimal)</td>
-                                    <td>Weight matches verified average</td>
-                                    <td><span class="badge b-pass">Standard</span></td>
-                                </tr>
-                                <tr>
-                                    <td>🆗</td>
-                                    <td>PASSED (OK)</td>
-                                    <td>Perfectly within Min/Max range</td>
-                                    <td><span class="badge b-pass">Standard</span></td>
-                                </tr>
-                                <tr>
-                                    <td>🅰️</td>
-                                    <td>ACCEPTED</td>
-                                    <td>Valid after applying ADJ tolerance</td>
-                                    <td><span class="badge b-pass">Adjusted</span></td>
-                                </tr>
-                                <tr>
-                                    <td>🔽</td>
-                                    <td>GRAY ZONE (Low)</td>
-                                    <td>Slightly under-weight deviation</td>
-                                    <td><span class="badge b-warn">Marginal</span></td>
-                                </tr>
-                                <tr>
-                                    <td>🔼</td>
-                                    <td>GRAY ZONE (High)</td>
-                                    <td>Slightly over-weight deviation</td>
-                                    <td><span class="badge b-warn">Marginal</span></td>
-                                </tr>
-                                <tr>
-                                    <td>▼</td>
-                                    <td>WARNING (Low)</td>
-                                    <td>Approaching critical low limit</td>
-                                    <td><span class="badge b-warn">Warning</span></td>
-                                </tr>
-                                <tr>
-                                    <td>▲</td>
-                                    <td>WARNING (High)</td>
-                                    <td>Approaching critical high limit</td>
-                                    <td><span class="badge b-warn">Warning</span></td>
-                                </tr>
-                                <tr>
-                                    <td>⏬</td>
-                                    <td>REJECTED (Low)</td>
-                                    <td>Substandard: Beyond low tolerance</td>
-                                    <td><span class="badge b-reject">FAIL</span></td>
-                                </tr>
-                                <tr>
-                                    <td>⏫</td>
-                                    <td>REJECTED (High)</td>
-                                    <td>Substandard: Beyond high tolerance</td>
-                                    <td><span class="badge b-reject">FAIL</span></td>
-                                </tr>
-                                <tr>
-                                    <td>🚫</td>
-                                    <td>MISMATCH</td>
-                                    <td>Profile does not match Die ID</td>
-                                    <td><span class="badge b-reject">ERROR</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- Console Display -->
-                <section>
-                    <h2><i class="fas fa-code"></i> Live Inspection Output</h2>
-                    <div class="terminal">
-                        [INIT] LOADED: WEIGHT_CHART_MASTER.csv (1,500+ DIES)<br>
-                        [CONN] SCALE BRIDGE: ACTIVE @ COM3 (9600-8-1)<br>
-                        --------------------------------------------------------------<br>
-                        SEARCH: DIE [2122] | LEN [21] | PCS [4] | ADJ [±0.050]<br>
-                        LIVE WEIGHT: 10.985 KG (STABLE)<br>
-                        --------------------------------------------------------------<br>
-                        SN   | DIE NAME | LEN  | WT-AVG | WT-DIF | QC STATUS<br>
-                        982  | MX-2122  | 21.0 | 2.657  | +0.000 | ✔️ PASSED 🆗<br>
-                        1227 | MXP-2122 | 21.0 | 3.196  | -0.384 | ❌ REJECTED ⏬<br>
-                        106  | AP-2122  | 21.0 | 3.325  | -0.480 | ❌ REJECTED ⏬<br>
-                        --------------------------------------------------------------<br>
-                        [ACTION] PUSHING DATA TO LIGHTHOUSE ERP... COMPLETED.
-                    </div>
-                </section>
-            </div>
-
-            <div class="side-column">
-                <!-- System Files -->
-                <section class="side-info">
-                    <h3><i class="fas fa-folder-open"></i> Technical Files</h3>
-                    <div class="content-card">
-                        <ul class="feature-list" style="font-size: 0.85rem;">
-                            <li><code>WEIGHT_CHART_MASTER.csv</code> (Die Database)</li>
-                            <li><code>X:\wbdata1.wbg</code> (Scale IO File)</li>
-                            <li><code>Configuration.ini</code> (COM Settings)</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Hardware Details -->
-                <section class="side-info">
-                    <h3><i class="fas fa-server"></i> Hardware Specs</h3>
-                    <div class="content-card">
-                        <ul class="feature-list">
-                            <li><strong>Monitor:</strong> Yaohua XK3190-D#</li>
-                            <li><strong>Baud Rate:</strong> 9600</li>
-                            <li><strong>Data Bits:</strong> 8</li>
-                            <li><strong>Stop Bits:</strong> 1</li>
-                            <li><strong>Mode:</strong> Continuous Stream</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Core Features -->
-                <section class="side-info">
-                    <h3><i class="fas fa-star"></i> Core Features</h3>
-                    <div class="content-card">
-                        <ul class="feature-list">
-                            <li>Real-time Scale Polling</li>
-                            <li>Multi-Die Search Filter</li>
-                            <li>Auto-Manual Fallback</li>
-                            <li>ERP Label Automation</li>
-                            <li>Color-coded ANSI UI</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Contact Hire -->
-                <section>
-                    <div class="content-card" style="text-align: center; border: 1px dashed var(--accent-blue);">
-                        <p style="margin-bottom: 20px; font-size: 0.9rem;">Looking for industrial automation expertise?</p>
-                        <a href="mailto:amin670bd@gmail.com" style="display: block; background: var(--accent-blue); color: #000; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none;">Contact Developer</a>
-                    </div>
-                </section>
-            </div>
+        <!-- Project Overview -->
+        <h2 class="section-title"><i class="fas fa-file-alt"></i> Project Details</h2>
+        <div class="card">
+            <p style="margin-bottom: 20px;">Designed and developed a custom desktop suite to integrate physical industrial weight indicators with <strong>LightHouse ERP</strong>. This application serves as the primary gateway for the Packing Section, ensuring that every aluminum bundle is weighed, verified, and logged automatically without manual data entry.</p>
+            
+            <ul class="feature-list">
+                <li><strong>Hardware Integration:</strong> Implemented Serial Port (RS232) communication for real-time capture from Yaohua XK3190-D indicators.</li>
+                <li><strong>Workflow Automation:</strong> Seamlessly transfers validated weight data directly to ERP fields.</li>
+                <li><strong>Throughput Optimization:</strong> Scaled daily label printing from a manual 2,500 to an automated 8,000+ per day.</li>
+                <li><strong>Dynamic QC Logic:</strong> Performs instant 10-tier weight verification against master production charts.</li>
+            </ul>
         </div>
+
+        <!-- 10 Tier QC Logic -->
+        <h2 class="section-title"><i class="fas fa-tasks"></i> 10-Tier Quality Logic</h2>
+        <div class="card table-wrapper" style="padding: 0;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Icon</th>
+                        <th>Status Code</th>
+                        <th>Logic Description</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>✅</td>
+                        <td>PASSED (Optimal)</td>
+                        <td>Near absolute target average</td>
+                        <td><span class="status-badge status-ok">A+</span></td>
+                    </tr>
+                    <tr>
+                        <td>🆗</td>
+                        <td>PASSED (OK)</td>
+                        <td>Within standard Min/Max range</td>
+                        <td><span class="status-badge status-ok">A</span></td>
+                    </tr>
+                    <tr>
+                        <td>🅰️</td>
+                        <td>ACCEPTED</td>
+                        <td>Passes via User Adjustment (ADJ)</td>
+                        <td><span class="status-badge status-ok">B</span></td>
+                    </tr>
+                    <tr>
+                        <td>🔼/🔽</td>
+                        <td>GRAY ZONE</td>
+                        <td>Slight deviation (Inspect required)</td>
+                        <td><span class="status-badge status-warn">C</span></td>
+                    </tr>
+                    <tr>
+                        <td>▲/▼</td>
+                        <td>WARNING</td>
+                        <td>Borderline critical limit</td>
+                        <td><span class="status-badge status-warn">D</span></td>
+                    </tr>
+                    <tr>
+                        <td>⏫/⏬</td>
+                        <td>REJECTED</td>
+                        <td>Beyond permissible production tolerance</td>
+                        <td><span class="status-badge status-fail">FAIL</span></td>
+                    </tr>
+                    <tr>
+                        <td>🚫</td>
+                        <td>MISMATCH</td>
+                        <td>Die Profile does not match ID</td>
+                        <td><span class="status-badge status-fail">ERROR</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Technical Output -->
+        <h2 class="section-title"><i class="fas fa-terminal"></i> Example Output of Weight Checker</h2>
+      <div class="terminal">
+================================================================================================================================================
+                                               📦 ALUMINUM BUNDLE PRODUCTION PRECISION CHECKER V3.0 📦
+================================================================================================================================================
+
+                               ----------- ✏️ ENTER INFO ✏️ -----------
+
+ DIE NAME/NUMBER     : 2122
+ SEARCH LENGTH (FT)  :
+ PIECES IN BUNDLE    : 4
+ 1 PIECE ±ADJUST     :
+
+                       ----------- 📦 BUNDLE INFORMATION 📦 -----------
+
+ BUNDLE WEIGHT    : 10.985 KG           SEARCH LENGTH : 0.0 FT
+ PIECES IN BUNDLE : 4 PCS               1PC WEIGHT    : 2.746 KG/PC
+ ADJUST WEIGHT    : ±0.000 KG           ADJUST RANGE  : 2.746 <> 2.746 KG
+
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+ SN   | CATEGORY  | DIE NAME                      | LEN   | WT-AVG  | WT-MIN  | WT-MAX  | WT-DIF  |       STATUS      |    WT QC RESULT        |
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+ 1228 | Maxx Pro  | MXP-2122                      |  18.5 |   2.815 |   2.758 |   2.873 |  -0.011 | ✔️ GRAY ZONE 🔽   | SLIGHT UNDER-WEIGHT    |
+ 982  | Maxx      | MX-2122                       |  21.0 |   2.657 |   2.555 |   2.759 |   0.000 | ✔️ PASSED    🆗   | WITHIN MIN MAX WEIGHT  |
+ 107  | Alco Plus | AP-2122                       |  18.5 |   2.929 |   2.843 |   3.016 |  -0.096 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 983  | Maxx      | MX-2122                       |  18.5 |   2.341 |   2.251 |   2.431 |  +0.315 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 1227 | Maxx Pro  | MXP-2122                      |  21.0 |   3.196 |   3.130 |   3.262 |  -0.384 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 106  | Alco Plus | AP-2122                       |  21.0 |   3.325 |   3.227 |   3.423 |  -0.480 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 611  | Alco      | EC-2122                       |  21.0 |   2.044 |   1.937 |   2.152 |  +0.594 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 1357 | Premier   | PR-2122                       |  21.0 |   1.861 |   1.795 |   1.927 |  +0.819 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 22   | 1.5mm Pro | 1.5-2122                      |  18.5 |   3.667 |   3.578 |   3.756 |  -0.831 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 610  | Alco      | EC-2122                       |  18.5 |   1.801 |   1.706 |   1.896 |  +0.851 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 697  | EDP       | EDP-2122-1.2 MM               |  21.0 |   3.921 |   3.788 |   4.053 |  -1.042 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 984  | Maxx      | MX-2122S                      |  21.0 |   1.532 |   1.471 |   1.593 |  +1.153 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+ 1143 | Maxx      | MX-SGTA-2122                  |  21.0 |   4.138 |   3.998 |   4.278 |  -1.252 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 21   | 1.5mm Pro | 1.5-2122                      |  21.0 |   4.162 |   4.061 |   4.264 |  -1.315 | ❌ REJECTED  ⏬   | BEYOND TOLERANCE LOW   |
+ 612  | Alco      | EC-2122S                      |  21.0 |   1.228 |   1.163 |   1.293 |  +1.454 | ❌ REJECTED  ⏫   | BEYOND TOLERANCE HIGH  |
+------+-----------+-------------------------------+-------+---------+---------+---------+---------+---------------------------------------------
+                                                 [ANY KEY] NEXT | [I] INFO | [R] RELOAD
+</div>
 
         <footer>
-            <p>Designed and Built for <strong>Dhaka Thai AlcoMaxx PLC</strong></p>
-            <p style="font-size: 0.75rem; margin-top: 10px;">&copy; 2024-2026 MD. ASADUZZAMAN (AMINUR). All Rights Reserved.</p>
+            <p>Developed by <strong>MD. ASADUZZAMAN (AMINUR)</strong> for Dhaka Thai AlcoMaxx PLC</p>
+            <p style="margin-top: 8px;">&copy; 2024 - 2026 amin670bd.github.io</p>
         </footer>
     </div>
 
